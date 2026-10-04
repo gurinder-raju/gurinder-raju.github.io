@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Human Intelligence In The Age Of AI · Gurinder Raju</title>
+<meta name="description" content="Talk slides from TPM Basecamp (Nov 2025): twelve practical tips for keeping human intelligence at the centre while you supercharge your work with AI.">
+<meta name="author" content="Gurinder Raju">
+<meta property="og:title" content="Human Intelligence In The Age Of AI">
+<meta property="og:description" content="Twelve practical tips for TPMs on pairing AI with human intelligence.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='2' fill='%231f1f28'/><rect x='3' y='4' width='2' height='8' fill='%23e6c384'/><rect x='11' y='4' width='2' height='8' fill='%23e6c384'/><rect x='5' y='7' width='6' height='2' fill='%23e6c384'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Martian+Mono:wdth,wght@75..112.5,300..700&display=swap" rel="stylesheet">
+<style>
+/* Palette: Kanagawa (dark) / Kanagawa Lotus (light), after rebelot/kanagawa.nvim.
+   Kept in sync with kanagawa.yaml, the terminal theme. */
+:root {
+  --bg: #1f1f28;        /* sumiInk3 */
+  --surface: #2a2a37;   /* sumiInk4 */
+  --fg: #dcd7ba;        /* fujiWhite */
+  --soft: #c8c093;      /* oldWhite */
+  --muted: #727169;     /* fujiGray */
+  --title: #e6c384;     /* carpYellow */
+  --link: #7e9cd8;      /* crystalBlue */
+  --emph: #e6c384;
+  --rule: #363646;      /* sumiInk5 */
+  --font-body: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-title: "Martian Mono", "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  /* Box-drawing glyphs must come from one font so diagrams line up. */
+  --font-grid: ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", "Liberation Mono", monospace;
+  --margin: clamp(1.25rem, 8vw, 7rem);
+  --bar: 2.4rem;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f2ecbc; --surface: #e7dba0; --fg: #545464; --soft: #43436c;
+    --muted: #8a8980; --title: #43436c; --link: #4d699b; --emph: #b35b00;
+    --rule: #d5cea3; color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f2ecbc; --surface: #e7dba0; --fg: #545464; --soft: #43436c;
+  --muted: #8a8980; --title: #43436c; --link: #4d699b; --emph: #b35b00;
+  --rule: #d5cea3; color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #1f1f28; --surface: #2a2a37; --fg: #dcd7ba; --soft: #c8c093;
+  --muted: #727169; --title: #e6c384; --link: #7e9cd8; --emph: #e6c384;
+  --rule: #363646; color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { height: 100%; scroll-padding-top: env(safe-area-inset-top, 0px); }
+body {
+  height: 100%; margin: 0; overflow: hidden;
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body);
+  font-size: clamp(16px, 0.45rem + 1.05vw, 25px);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--link); text-underline-offset: 0.2em; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--title); outline-offset: 3px; }
+
+/* ── deck ───────────────────────────────────────────── */
+.deck { position: relative; height: calc(100% - var(--bar)); }
+.slide {
+  position: absolute; inset: 0;
+  display: none; flex-direction: column;
+  padding: clamp(1.5rem, 6vh, 4.5rem) var(--margin) 1.5rem;
+  overflow-y: auto;
+}
+.slide.is-current { display: flex; }
+.slide .spacer { flex: 1 1 0; max-width: none; min-height: 1rem; }
+.slide > * { max-width: 78ch; }
+
+.slide-title {
+  font-family: var(--font-title);
+  font-variation-settings: "wdth" 92;
+  font-weight: 600;
+  font-size: clamp(1.45rem, 0.9rem + 2.4vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--title);
+  margin: 0;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid var(--rule);
+  width: 100%;
+}
+.slide h3 {
+  font: 500 0.85em/1.4 var(--font-body);
+  color: var(--muted);
+  margin: 1.4em 0 0;
+}
+.slide h3::before { content: "### "; }
+.slide p { margin: 1em 0 0; }
+.slide-title + p { margin-top: 1.4em; }
+.slide strong { color: var(--soft); font-weight: 600; }
+.slide code { color: var(--link); font-family: var(--font-body); }
+
+.slide ul, .slide ol { margin: 1em 0 0; padding: 0; list-style: none; }
+.slide li { display: grid; grid-template-columns: 2.25em 1fr; margin: 0.45em 0; }
+.slide ul > li::before { content: "•"; color: var(--muted); padding-left: 0.6em; }
+.slide ol { counter-reset: n var(--start, 0); }
+.slide ol > li { counter-increment: n; }
+.slide ol > li::before { content: counter(n) "."; color: var(--muted); text-align: right; padding-right: 0.75em; }
+
+.slide blockquote {
+  margin: 0; padding: 0 0 0 1.1em;
+  border-left: 3px solid var(--emph);
+  font-family: var(--font-title);
+  font-variation-settings: "wdth" 88;
+  font-weight: 500;
+  font-size: clamp(1.3rem, 0.8rem + 2.2vw, 2.4rem);
+  line-height: 1.3;
+  color: var(--soft);
+}
+.slide blockquote p { margin: 0; }
+
+/* Statement slides: a bold line on its own, vertically centred. */
+.slide.middle.statement p:first-of-type strong {
+  display: block;
+  font-family: var(--font-title);
+  font-variation-settings: "wdth" 88;
+  font-weight: 600;
+  font-size: clamp(1.4rem, 0.8rem + 2.6vw, 2.8rem);
+  line-height: 1.2;
+  color: var(--title);
+}
+
+/* Diagrams. Heavy-line glyphs mark emphasis, as in the terminal. */
+.grid {
+  font-family: var(--font-grid);
+  font-size: 1em; line-height: 1.3;
+  margin: 1.3em 0 0; padding: 0;
+  white-space: pre; overflow-x: auto; max-width: 100%;
+  color: color-mix(in srgb, var(--fg) 72%, var(--bg));
+}
+.grid .hv { color: var(--emph); }
+.grid .no { color: var(--muted); }
+.grid.lettering { color: var(--title); font-size: 1.6em; line-height: 1.05; margin-top: 0; }
+
+/* Title slide: block letters, printed once. */
+.figlet {
+  font-family: var(--font-grid);
+  line-height: 1; margin: 0; white-space: pre;
+  color: var(--title);
+  font-size: clamp(5px, calc((100vw - 2 * var(--margin)) / 47 / 0.6), 1.9rem);
+}
+.figlet span { display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  .figlet.print span { opacity: 0; animation: line-in 0s linear forwards; animation-delay: calc(var(--i) * 70ms + 120ms); }
+  @keyframes line-in { to { opacity: 1; } }
+}
+.slide.cover .figlet + p strong { display: block; font-family: var(--font-title); font-variation-settings: "wdth" 92; font-weight: 500; font-size: clamp(1.05rem, 0.7rem + 1.3vw, 1.7rem); color: var(--fg); margin-top: 0.4em; }
+.slide.cover p { color: var(--muted); }
+.slide.cover .figlet + p { color: var(--fg); margin-top: 1.4em; }
+.slide.cover p:nth-of-type(2) { color: var(--fg); margin-top: 2.2em; }
+
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3em; width: 100%; }
+.cols > div > :first-child { margin-top: 1em; }
+@media (max-width: 700px) {
+  .cols { grid-template-columns: 1fr; }
+  .cols > div + div > :first-child { margin-top: 0; }
+}
+
+/* ── status bar ─────────────────────────────────────── */
+.bar {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  height: calc(var(--bar) + env(safe-area-inset-bottom, 0px));
+  padding: 0 var(--margin) env(safe-area-inset-bottom, 0px);
+  display: flex; align-items: center; gap: 1.25rem;
+  background: var(--surface); color: var(--muted);
+  font-size: 0.78rem;
+}
+.bar::before {
+  content: ""; position: absolute; left: 0; top: 0; height: 2px;
+  width: var(--progress, 0%); background: var(--emph);
+  transition: width 160ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) { .bar::before { transition: none; } }
+.bar .file { color: var(--fg); }
+.bar .hint { margin-left: auto; }
+.bar button {
+  font: inherit; color: inherit; background: none; border: 0; padding: 0.3em 0.5em; cursor: pointer;
+}
+.bar button:hover { color: var(--fg); }
+.bar .count { font-variant-numeric: tabular-nums; color: var(--fg); min-width: 5ch; text-align: right; }
+@media (max-width: 640px) { .bar .hint, .bar .file-ext { display: none; } .bar .nav { margin-left: auto; } }
+
+/* ── help overlay ───────────────────────────────────── */
+.help {
+  position: fixed; inset: 0; display: none; place-items: center;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+}
+.help.open { display: grid; }
+.help pre {
+  font-family: var(--font-grid); font-size: 0.9rem; line-height: 1.5;
+  background: var(--surface); color: var(--fg);
+  padding: 1.2em 1.6em; margin: 1rem; border: 1px solid var(--rule); overflow-x: auto; max-width: calc(100vw - 2rem);
+}
+.help kbd { font: inherit; color: var(--title); }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media print {
+  @page { size: 13.333in 7.5in; margin: 0; }
+  body { overflow: visible; height: auto; font-size: 17px; }
+  .deck { height: auto; }
+  .slide { position: relative; display: flex !important; height: 7.5in; break-after: page; overflow: hidden; }
+  .bar, .help { display: none !important; }
+  .figlet.print span { opacity: 1 !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+<main class="deck" id="deck" aria-roledescription="carousel" aria-label="Slides"></main>
+
+<nav class="bar" aria-label="Slide navigation">
+  <span class="file">human-intelligence<span class="file-ext">.md</span></span>
+  <span class="hint">←/→ to move &nbsp; ? for keys</span>
+  <span class="nav">
+    <button type="button" id="prev" aria-label="Previous slide">‹</button>
+    <button type="button" id="next" aria-label="Next slide">›</button>
+  </span>
+  <span class="count" id="count" aria-hidden="true">1 / 1</span>
+</nav>
+
+<div class="help" id="help" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
+<pre>keys
+────────────────────────────
+<kbd>→ l j space</kbd>   next slide
+<kbd>← h k</kbd>         previous slide
+<kbd>g / G</kbd>         first / last
+<kbd>t</kbd>             light / dark
+<kbd>p</kbd>             print or save as PDF
+<kbd>? esc</kbd>         close this
+
+source: <a href="slides.md">slides.md</a> (presenterm)</pre>
+</div>
+
+<div class="sr" aria-live="polite" id="live"></div>
+
+<script type="text/plain" id="deck-src">/*__SLIDES_MD__*/</script>
+<script>
+(() => {
+  "use strict";
+
+  // ── tiny renderer for the presenterm markdown subset used in slides.md ──
+  const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const inline = s => esc(s)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/(^|\s)((?:linkedin\.com|github\.com)\/[\w\-./]+)/g, '$1<a href="https://$2">$2</a>');
+  const HEAVY = /[━┃┏┓┗┛┳┻┣┫╋┷┯▲▶✓]+/g;
+  const grid = s => esc(s).replace(HEAVY, m => `<span class="hv">${m}</span>`).replace(/✗/g, '<span class="no">✗</span>');
+
+  function renderSlide(src) {
+    const lines = src.replace(/\s+$/, "").split("\n");
+    const out = [];            // html chunks for current container
+    let cols = null, col = -1; // column layout state
+    const flags = { middle: false };
+    let para = [], list = null;
+
+    const push = h => (cols ? cols[col] : out).push(h);
+    const flushPara = () => {
+      if (!para.length) return;
+      const html = para.map(l => l.endsWith("\\") ? inline(l.slice(0, -1)) + "<br>" : inline(l) + " ").join("").trim();
+      push(`<p>${html}</p>`); para = [];
+    };
+    const flushList = () => {
+      if (!list) return;
+      const start = list.start ? ` style="--start:${list.start - 1}"` : "";
+      push(`<${list.tag}${start}>${list.items.map(i => `<li><span>${inline(i)}</span></li>`).join("")}</${list.tag}>`);
+      list = null;
+    };
+    const flush = () => { flushPara(); flushList(); };
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const dir = line.match(/^<!--\s*([\w_]+)(?::\s*(.*?))?\s*-->$/);
+      if (dir) {
+        flush();
+        const [, name, arg] = dir;
+        if (name === "jump_to_middle") { flags.middle = true; push('<div class="spacer"></div>'); }
+        else if (name === "column_layout") { cols = JSON.parse(arg).map(() => []); col = 0; }
+        else if (name === "column") col = Number(arg);
+        else if (name === "reset_layout" && cols) { out.push(`<div class="cols">${cols.map(c => `<div>${c.join("")}</div>`).join("")}</div>`); cols = null; }
+        continue; // pause, speaker_note, new_lines: no-ops on the web
+      }
+      if (/^```/.test(line)) {
+        flush();
+        const body = [];
+        while (++i < lines.length && !/^```\s*$/.test(lines[i])) body.push(lines[i]);
+        const text = body.join("\n");
+        if (/█/.test(text) && !/[a-z]/i.test(text)) push(`<pre class="figlet print" aria-hidden="true">${body.map((l, n) => `<span style="--i:${n}">${esc(l)}</span>`).join("")}</pre>`);
+        else if (/^[\s┌┐└┘├┤┬┴┼─│]+$/.test(text)) push(`<pre class="grid lettering" aria-hidden="true">${esc(text)}</pre>`);
+        else push(`<pre class="grid" aria-hidden="true">${grid(text)}</pre>`);
+        continue;
+      }
+      if (lines[i + 1] && /^=+\s*$/.test(lines[i + 1]) && line.trim()) { flush(); push(`<h2 class="slide-title">${inline(line)}</h2>`); i++; continue; }
+      let m;
+      if ((m = line.match(/^###\s+(.*)/))) { flush(); push(`<h3>${inline(m[1].replace(/^#+\s*/, ""))}</h3>`); continue; }
+      if ((m = line.match(/^>\s?(.*)/))) { flush(); push(`<blockquote><p>${inline(m[1])}</p></blockquote>`); continue; }
+      if ((m = line.match(/^-\s+(.*)/))) { flushPara(); if (!list || list.tag !== "ul") { flushList(); list = { tag: "ul", items: [] }; } list.items.push(m[1]); continue; }
+      if ((m = line.match(/^(\d+)\.\s+(.*)/))) { flushPara(); if (!list || list.tag !== "ol") { flushList(); list = { tag: "ol", items: [], start: Number(m[1]) }; } list.items.push(m[2]); continue; }
+      if (!line.trim()) { flush(); continue; }
+      flushList(); para.push(line.trim());
+    }
+    flush();
+    if (cols) out.push(`<div class="cols">${cols.map(c => `<div>${c.join("")}</div>`).join("")}</div>`);
+    if (flags.middle) out.push('<div class="spacer"></div>');
+    return { html: out.join(""), flags };
+  }
+
+  // ── build the deck ──
+  let md = document.getElementById("deck-src").textContent.replace(/^\uFEFF/, "");
+  md = md.replace(/^---\n[\s\S]*?\n---\n/, "");
+  const chunks = md.split(/^<!--\s*end_slide\s*-->\s*$/m).filter(c => c.trim());
+  const deck = document.getElementById("deck");
+  const slides = chunks.map((c, n) => {
+    const { html, flags } = renderSlide(c);
+    const s = document.createElement("section");
+    s.className = "slide";
+    s.setAttribute("aria-roledescription", "slide");
+    s.setAttribute("aria-label", `${n + 1} of ${chunks.length}`);
+    s.innerHTML = html;
+    if (flags.middle) s.classList.add("middle");
+    if (s.querySelector(".figlet")) { s.classList.add("cover", "middle"); s.insertAdjacentHTML("afterbegin", '<div class="spacer"></div>'); s.insertAdjacentHTML("beforeend", '<div class="spacer"></div>'); }
+    if (flags.middle && !s.querySelector(".slide-title")) s.classList.add("statement");
+    deck.appendChild(s);
+    return s;
+  });
+
+  // ── navigation ──
+  const count = document.getElementById("count");
+  const live = document.getElementById("live");
+  const help = document.getElementById("help");
+  let cur = -1;
+  function go(n, announce = true) {
+    n = Math.max(0, Math.min(slides.length - 1, n));
+    if (n === cur) return;
+    if (cur >= 0) slides[cur].classList.remove("is-current");
+    cur = n;
+    const s = slides[cur];
+    s.classList.add("is-current");
+    s.scrollTop = 0;
+    count.textContent = `${cur + 1} / ${slides.length}`;
+    document.documentElement.style.setProperty("--progress", `${((cur + 1) / slides.length) * 100}%`);
+    // Sandboxed previews (and some embeds) forbid URL changes; the deck must still work.
+    try { if (location.hash !== `#${cur + 1}`) history.replaceState(null, "", `#${cur + 1}`); } catch (_) {}
+    if (announce) {
+      const t = s.querySelector(".slide-title, blockquote, strong");
+      live.textContent = `Slide ${cur + 1} of ${slides.length}${t ? ": " + t.textContent : ""}`;
+    }
+    fit(s);
+    // Only the first view of the cover gets the print-in.
+    if (cur !== 0) document.querySelectorAll(".figlet.print").forEach(f => f.classList.remove("print"));
+  }
+  // Shrink a diagram's type until its widest line fits the screen.
+  function fit(s) {
+    s.querySelectorAll("pre.grid").forEach(el => {
+      el.style.fontSize = "";
+      if (el.scrollWidth > el.clientWidth + 1) {
+        const fs = parseFloat(getComputedStyle(el).fontSize) * el.clientWidth / el.scrollWidth * 0.97;
+        el.style.fontSize = Math.max(fs, 7) + "px";
+      }
+    });
+  }
+  addEventListener("resize", () => cur >= 0 && fit(slides[cur]));
+  const fromHash = () => { const n = parseInt(location.hash.slice(1), 10); return Number.isFinite(n) ? n - 1 : 0; };
+  go(fromHash(), false);
+  addEventListener("hashchange", () => go(fromHash()));
+
+  const toggleHelp = open => help.classList.toggle("open", open ?? !help.classList.contains("open"));
+  function toggleTheme() {
+    const root = document.documentElement;
+    const isDark = getComputedStyle(root).colorScheme.includes("dark");
+    root.dataset.theme = isDark ? "light" : "dark";
+    try { localStorage.setItem("deck-theme", root.dataset.theme); } catch (_) {}
+  }
+  try { const t = localStorage.getItem("deck-theme"); if (t) document.documentElement.dataset.theme = t; } catch (_) {}
+
+  addEventListener("keydown", e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const k = e.key;
+    if (help.classList.contains("open")) { if (k === "Escape" || k === "?") { toggleHelp(false); e.preventDefault(); } return; }
+    if (["ArrowRight", "l", "j", " ", "PageDown", "Enter"].includes(k)) go(cur + 1);
+    else if (["ArrowLeft", "h", "k", "PageUp", "Backspace"].includes(k)) go(cur - 1);
+    else if (k === "Home" || k === "g") go(0);
+    else if (k === "End" || k === "G") go(slides.length - 1);
+    else if (k === "?") toggleHelp(true);
+    else if (k === "t") toggleTheme();
+    else if (k === "p") print();
+    else return;
+    e.preventDefault();
+  });
+  document.getElementById("prev").addEventListener("click", () => go(cur - 1));
+  document.getElementById("next").addEventListener("click", () => go(cur + 1));
+  help.addEventListener("click", e => { if (e.target === help) toggleHelp(false); });
+
+  // Tap the right or left third of a slide; swipe on touch screens.
+  deck.addEventListener("click", e => {
+    if (e.target.closest("a, button") || getSelection().toString()) return;
+    const x = e.clientX / innerWidth;
+    if (x < 0.33) go(cur - 1); else go(cur + 1);
+  });
+  let sx = null, sy = null;
+  deck.addEventListener("touchstart", e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  deck.addEventListener("touchend", e => {
+    if (sx === null) return;
+    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1));
+    sx = sy = null;
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>

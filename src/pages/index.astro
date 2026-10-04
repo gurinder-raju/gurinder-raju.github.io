@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import TalkList from '../components/TalkList.astro';
+import { getPosts } from '../utils';
+
+const latest = (await getPosts()).slice(0, 5);
+---
+
+<Base>
+	<h1>Gurinder Raju</h1>
+	<p>
+		I'm Director of WorkSpaces at AWS. I write about AI infrastructure (training, inference, and agentic
+		runtimes) and give talks about working well with people in the age of AI.
+	</p>
+
+	<h2>Latest posts</h2>
+	<PostList posts={latest} />
+	<a class="more" href="/posts/">All posts →</a>
+
+	<h2>Talks</h2>
+	<TalkList />
+</Base>

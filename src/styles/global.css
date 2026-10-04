@@ -1,0 +1,156 @@
+:root {
+	--bg: #fbfaf7;
+	--fg: #1d1d1b;
+	--muted: #6b6a66;
+	--rule: #e4e2dc;
+	--link: #1f4e8c;
+	--measure: 40rem;
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #151514;
+		--fg: #e9e7e2;
+		--muted: #9a978f;
+		--rule: #2e2d2a;
+		--link: #8db4ea;
+		color-scheme: dark;
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--fg);
+	font: 1.0625rem/1.65 ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+}
+
+.wrap {
+	max-width: var(--measure);
+	margin: 0 auto;
+	padding: 0 1rem;
+}
+
+header.site {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1.25rem;
+	align-items: baseline;
+	justify-content: space-between;
+	padding-top: 2rem;
+	padding-bottom: 2.5rem;
+	font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+	font-size: 0.95rem;
+}
+
+header.site .name {
+	font-weight: 600;
+	color: var(--fg);
+	text-decoration: none;
+}
+
+header.site nav {
+	display: flex;
+	gap: 1.25rem;
+}
+
+header.site nav a {
+	color: var(--muted);
+	text-decoration: none;
+}
+
+header.site nav a:hover,
+header.site nav a[aria-current='page'] {
+	color: var(--fg);
+}
+
+a {
+	color: var(--link);
+	text-underline-offset: 0.15em;
+}
+
+h1,
+h2,
+h3 {
+	line-height: 1.25;
+	font-weight: 600;
+}
+
+h1 {
+	font-size: 1.9rem;
+	margin: 0 0 0.5rem;
+}
+
+h2 {
+	font-size: 1.15rem;
+	margin: 2.75rem 0 0.75rem;
+	font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+	letter-spacing: 0.01em;
+}
+
+p {
+	margin: 0 0 1.1rem;
+}
+
+.meta {
+	color: var(--muted);
+	font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+	font-size: 0.875rem;
+}
+
+ul.list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+ul.list li {
+	padding: 0.85rem 0;
+	border-top: 1px solid var(--rule);
+}
+
+ul.list li:last-child {
+	border-bottom: 1px solid var(--rule);
+}
+
+ul.list .title {
+	font-weight: 600;
+}
+
+ul.list p {
+	margin: 0.2rem 0 0;
+	color: var(--muted);
+}
+
+.more {
+	display: inline-block;
+	margin-top: 0.75rem;
+	font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+	font-size: 0.9rem;
+}
+
+article img.hero {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 1.75rem 0 2rem;
+	border-radius: 4px;
+}
+
+footer.site {
+	margin-top: 4rem;
+	padding-top: 1.25rem;
+	padding-bottom: 2.5rem;
+	border-top: 1px solid var(--rule);
+}

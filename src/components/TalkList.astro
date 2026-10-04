@@ -1,0 +1,18 @@
+---
+import { talks } from '../data/talks';
+import { formatDate } from '../utils';
+---
+
+<ul class="list">
+	{
+		talks.map((talk) => (
+			<li>
+				<a class="title" href={talk.href}>{talk.title}</a>
+				<div class="meta">
+					{talk.event} · <time datetime={talk.date.toISOString()}>{formatDate(talk.date, { year: 'numeric', month: 'long' })}</time>
+				</div>
+				<p>{talk.description}</p>
+			</li>
+		))
+	}
+</ul>

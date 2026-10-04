@@ -1,0 +1,33 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatDate, getPosts } from '../../utils';
+
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const ogImage = await getImage({ src: post.data.image, width: 1200, format: 'jpeg' });
+---
+
+<Base title={post.data.title} description={post.data.description} image={ogImage.src}>
+	<article>
+		<h1>{post.data.title}</h1>
+		<div class="meta">
+			<time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+		</div>
+		<Image
+			class="hero"
+			src={post.data.image}
+			alt={post.data.imageAlt}
+			widths={[400, 800, 1200]}
+			sizes="(max-width: 42rem) 100vw, 40rem"
+			loading="eager"
+		/>
+		<Content />
+	</article>
+</Base>

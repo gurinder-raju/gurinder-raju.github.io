@@ -1,0 +1,86 @@
+# Kanagawa-flavoured presenterm theme (palette: rebelot/kanagawa.nvim).
+# Kept in sync by hand with the CSS tokens in index.html.
+default:
+  margin:
+    percent: 8
+  colors:
+    foreground: palette:fuji_white
+    background: palette:sumi_ink
+
+slide_title:
+  alignment: left
+  padding_top: 1
+  padding_bottom: 1
+  separator: true
+  colors:
+    foreground: palette:carp_yellow
+  bold: true
+
+headings:
+  h1:
+    prefix: "#"
+    colors:
+      foreground: palette:carp_yellow
+  h2:
+    prefix: "##"
+    colors:
+      foreground: palette:crystal_blue
+  h3:
+    prefix: "###"
+    colors:
+      foreground: palette:fuji_gray
+
+code:
+  alignment: left
+  minimum_margin:
+    percent: 8
+  theme_name: base16-ocean.dark
+  padding:
+    horizontal: 0
+    vertical: 0
+
+inline_code:
+  colors:
+    foreground: palette:spring_green
+
+block_quote:
+  prefix: "▍ "
+  colors:
+    foreground: palette:old_white
+    background: palette:sumi_ink_4
+    prefix: palette:carp_yellow
+
+intro_slide:
+  title:
+    alignment: left
+    colors:
+      foreground: palette:carp_yellow
+  subtitle:
+    alignment: left
+    colors:
+      foreground: palette:crystal_blue
+  author:
+    alignment: left
+    colors:
+      foreground: palette:fuji_gray
+  footer: false
+
+footer:
+  style: template
+  left: "human-intelligence.md"
+  right: "{current_slide} / {total_slides}"
+  colors:
+    foreground: palette:fuji_gray
+    background: palette:sumi_ink
+
+palette:
+  colors:
+    sumi_ink: "1f1f28"
+    sumi_ink_4: "2a2a37"
+    fuji_white: "dcd7ba"
+    old_white: "c8c093"
+    fuji_gray: "727169"
+    carp_yellow: "e6c384"
+    crystal_blue: "7e9cd8"
+    spring_green: "98bb6c"
+    sakura_pink: "d27e99"
