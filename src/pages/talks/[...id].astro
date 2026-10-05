@@ -1,0 +1,61 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatDate, getTalks, youtubeId } from '../../utils';
+
+// Deck talks are served as-is from public/talks/, so only summary talks get a page here.
+export async function getStaticPaths() {
+	const talks = await getTalks();
+	return talks.filter((talk) => !talk.data.deck).map((talk) => ({ params: { id: talk.id }, props: { talk } }));
+}
+
+const { talk } = Astro.props;
+const { Content } = await render(talk);
+const videoId = talk.data.youtube && youtubeId(talk.data.youtube);
+const ogImage = talk.data.image && (await getImage({ src: talk.data.image, width: 1200, format: 'jpeg' }));
+---
+
+<Base title={talk.data.title} description={talk.data.description} image={ogImage ? ogImage.src : undefined}>
+	<article>
+		<h1>{talk.data.title}</h1>
+		<div class="meta">
+			{talk.data.event} ·{' '}
+			<time datetime={talk.data.date.toISOString()}>
+				{formatDate(talk.data.date, { year: 'numeric', month: 'long' })}
+			</time>
+		</div>
+		{
+			talk.data.image && (
+				<Image
+					class="hero"
+					src={talk.data.image}
+					alt={talk.data.imageAlt}
+					widths={[400, 800, 1200]}
+					sizes="(max-width: 42rem) 100vw, 40rem"
+					loading="eager"
+				/>
+			)
+		}
+		<div class="body">
+			<Content />
+		</div>
+		{
+			videoId && (
+				<figure class="video">
+					<iframe
+						src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+						title={`Video: ${talk.data.title}`}
+						loading="lazy"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						referrerpolicy="strict-origin-when-cross-origin"
+						allowfullscreen
+					/>
+					<figcaption class="meta">
+						<a href={talk.data.youtube}>Watch on YouTube</a>
+					</figcaption>
+				</figure>
+			)
+		}
+	</article>
+</Base>

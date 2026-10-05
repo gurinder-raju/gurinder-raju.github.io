@@ -12,9 +12,9 @@ const latest = (await getPosts()).slice(0, 5);
 	<p><a href="https://www.linkedin.com/in/gurinder-raju/">LinkedIn</a></p>
 
 	<h2>Latest posts</h2>
-	<PostList posts={latest} />
+	<PostList posts={latest} compact />
 	<a class="more" href="/posts/">All posts →</a>
 
 	<h2>Talks</h2>
-	<TalkList />
+	<TalkList compact />
 </Base>

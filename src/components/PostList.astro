@@ -4,21 +4,37 @@ import { formatDate } from '../utils';
 
 interface Props {
 	posts: CollectionEntry<'posts'>[];
+	// Lists show the month only; the post page shows the full date.
+	// Compact: one line per post (title and month), no description.
+	compact?: boolean;
 }
 
-const { posts } = Astro.props;
+const { posts, compact = false } = Astro.props;
 ---
 
-<ul class="list">
-	{
-		posts.map((post) => (
-			<li>
-				<a class="title" href={`/posts/${post.id}/`}>{post.data.title}</a>
-				<div class="meta">
-					<time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-				</div>
-				<p>{post.data.description}</p>
-			</li>
-		))
-	}
-</ul>
+{
+	compact ? (
+		<ul class="list compact">
+			{posts.map((post) => (
+				<li>
+					<a class="title" href={`/posts/${post.id}/`}>{post.data.title}</a>
+					<time class="meta" datetime={post.data.date.toISOString()}>
+						{formatDate(post.data.date, { year: 'numeric', month: 'short' })}
+					</time>
+				</li>
+			))}
+		</ul>
+	) : (
+		<ul class="list">
+			{posts.map((post) => (
+				<li>
+					<a class="title" href={`/posts/${post.id}/`}>{post.data.title}</a>
+					<div class="meta">
+						<time datetime={post.data.date.toISOString()}>{formatDate(post.data.date, { year: 'numeric', month: 'long' })}</time>
+					</div>
+					<p>{post.data.description}</p>
+				</li>
+			))}
+		</ul>
+	)
+}

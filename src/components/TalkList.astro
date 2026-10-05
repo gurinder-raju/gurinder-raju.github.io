@@ -1,18 +1,40 @@
 ---
-import { talks } from '../data/talks';
-import { formatDate } from '../utils';
+import { formatDate, getTalks, talkHref } from '../utils';
+
+interface Props {
+	// Compact: one line per talk (title and date), no description.
+	compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+const talks = await getTalks();
+const month = (date: Date) => formatDate(date, { year: 'numeric', month: compact ? 'short' : 'long' });
 ---
 
-<ul class="list">
-	{
-		talks.map((talk) => (
-			<li>
-				<a class="title" href={talk.href}>{talk.title}</a>
-				<div class="meta">
-					{talk.event} · <time datetime={talk.date.toISOString()}>{formatDate(talk.date, { year: 'numeric', month: 'long' })}</time>
-				</div>
-				<p>{talk.description}</p>
-			</li>
-		))
-	}
-</ul>
+{
+	compact ? (
+		<ul class="list compact">
+			{talks.map((talk) => (
+				<li>
+					<a class="title" href={talkHref(talk)}>{talk.data.title}</a>
+					<time class="meta" datetime={talk.data.date.toISOString()}>
+						{month(talk.data.date)}
+					</time>
+				</li>
+			))}
+		</ul>
+	) : (
+		<ul class="list">
+			{talks.map((talk) => (
+				<li>
+					<a class="title" href={talkHref(talk)}>{talk.data.title}</a>
+					<div class="meta">
+						{talk.data.event} · <time datetime={talk.data.date.toISOString()}>{month(talk.data.date)}</time> ·{' '}
+						{talk.data.deck ? 'Slides' : talk.data.youtube ? 'Summary and video' : 'Summary'}
+					</div>
+					<p>{talk.data.description}</p>
+				</li>
+			))}
+		</ul>
+	)
+}

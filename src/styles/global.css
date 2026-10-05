@@ -126,11 +126,42 @@ ul.list li:last-child {
 
 ul.list .title {
 	font-weight: 600;
+	font-size: 1rem;
 }
 
 ul.list p {
 	margin: 0.2rem 0 0;
 	color: var(--muted);
+	font-size: 0.95rem;
+}
+
+/* Home page: one row per item, title left and date right. */
+ul.list.compact li {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 0 1rem;
+	padding: 0.5rem 0;
+}
+
+ul.list.compact .title {
+	flex: 1;
+	font-size: 0.95rem;
+	font-weight: 500;
+}
+
+ul.list.compact .meta {
+	white-space: nowrap;
+}
+
+@media (max-width: 30rem) {
+	ul.list.compact li {
+		display: block;
+	}
+
+	ul.list.compact .meta {
+		display: block;
+	}
 }
 
 .more {
@@ -153,4 +184,25 @@ footer.site {
 	padding-top: 1.25rem;
 	padding-bottom: 2.5rem;
 	border-top: 1px solid var(--rule);
+}
+
+article .body {
+	margin-top: 1.75rem;
+}
+
+figure.video {
+	margin: 2.5rem 0 0;
+}
+
+figure.video iframe {
+	display: block;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	border: 0;
+	border-radius: 4px;
+	background: var(--rule);
+}
+
+figure.video figcaption {
+	margin-top: 0.5rem;
 }

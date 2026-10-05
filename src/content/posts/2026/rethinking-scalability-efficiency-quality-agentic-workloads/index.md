@@ -1,6 +1,6 @@
 ---
 title: "Rethinking Scalability, Efficiency, and Quality for Agentic Workloads"
-date: 2026-10-01
+date: 2026-09-30
 description: "Scalability, efficiency, and quality all need new approaches in fast evolving AI workloads."
 image: ./builders_attention_green_fir.png
 imageAlt: "Three stacked layers (training, inference, and agentic runtimes) connected by a glowing thread"
