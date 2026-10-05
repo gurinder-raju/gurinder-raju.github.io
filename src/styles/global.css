@@ -135,9 +135,10 @@ ul.list p {
 	font-size: 0.95rem;
 }
 
-/* Home page: one row per item, title left and date right. */
+/* Home page: title left and date right on one row, description below. */
 ul.list.compact li {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: baseline;
 	justify-content: space-between;
 	gap: 0 1rem;
@@ -145,13 +146,20 @@ ul.list.compact li {
 }
 
 ul.list.compact .title {
-	flex: 1;
+	flex: 1 1 0;
+	min-width: 0;
 	font-size: 0.95rem;
 	font-weight: 500;
 }
 
 ul.list.compact .meta {
 	white-space: nowrap;
+}
+
+ul.list.compact p {
+	flex-basis: 100%;
+	margin-top: 0.1rem;
+	font-size: 0.875rem;
 }
 
 @media (max-width: 30rem) {

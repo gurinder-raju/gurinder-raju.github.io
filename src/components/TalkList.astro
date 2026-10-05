@@ -2,7 +2,7 @@
 import { formatDate, getTalks, talkHref } from '../utils';
 
 interface Props {
-	// Compact: one line per talk (title and date), no description.
+	// Compact: title and month on one line, description below.
 	compact?: boolean;
 }
 
@@ -20,6 +20,7 @@ const month = (date: Date) => formatDate(date, { year: 'numeric', month: compact
 					<time class="meta" datetime={talk.data.date.toISOString()}>
 						{month(talk.data.date)}
 					</time>
+					<p>{talk.data.description}</p>
 				</li>
 			))}
 		</ul>

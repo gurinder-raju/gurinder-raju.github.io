@@ -5,7 +5,7 @@ import { formatDate } from '../utils';
 interface Props {
 	posts: CollectionEntry<'posts'>[];
 	// Lists show the month only; the post page shows the full date.
-	// Compact: one line per post (title and month), no description.
+	// Compact: title and month on one line, description below.
 	compact?: boolean;
 }
 
@@ -21,6 +21,7 @@ const { posts, compact = false } = Astro.props;
 					<time class="meta" datetime={post.data.date.toISOString()}>
 						{formatDate(post.data.date, { year: 'numeric', month: 'short' })}
 					</time>
+					<p>{post.data.description}</p>
 				</li>
 			))}
 		</ul>
