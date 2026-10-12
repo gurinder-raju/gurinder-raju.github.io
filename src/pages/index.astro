@@ -8,9 +8,6 @@ const latest = (await getPosts()).slice(0, 5);
 ---
 
 <Base>
-	<h1>Gurinder Raju</h1>
-	<p><a href="https://www.linkedin.com/in/gurinder-raju/">LinkedIn</a></p>
-
 	<h2>Latest posts</h2>
 	<PostList posts={latest} compact />
 	<a class="more" href="/posts/">All posts →</a>

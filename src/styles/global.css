@@ -55,6 +55,8 @@ header.site {
 }
 
 header.site .name {
+	margin: 0;
+	font-size: inherit;
 	font-weight: 600;
 	color: var(--fg);
 	text-decoration: none;
@@ -187,11 +189,12 @@ article img.hero {
 	border-radius: 4px;
 }
 
-footer.site {
-	margin-top: 4rem;
-	padding-top: 1.25rem;
-	padding-bottom: 2.5rem;
-	border-top: 1px solid var(--rule);
+main {
+	padding-bottom: 4rem;
+}
+
+main > h2:first-child {
+	margin-top: 0;
 }
 
 article .body {
