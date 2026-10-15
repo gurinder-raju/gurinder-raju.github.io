@@ -36,6 +36,10 @@ const talks = defineCollection({
 			imageAlt: z.string().default(''),
 			youtube: z.url().optional(),
 			deck: z.string().optional(),
+			// Books shown as a row of linked cover thumbnails at the bottom of the page.
+			books: z
+				.array(z.object({ title: z.string(), author: z.string(), url: z.url(), cover: image() }))
+				.optional(),
 		}),
 });
 

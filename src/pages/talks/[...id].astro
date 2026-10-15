@@ -37,6 +37,19 @@ const ogImage = talk.data.image && (await getImage({ src: talk.data.image, width
 				/>
 			)
 		}
+		{
+			talk.data.books && (
+				<ul class="books" aria-label="The books">
+					{talk.data.books.map((book) => (
+						<li>
+							<a href={book.url} title={`${book.title}, ${book.author}`}>
+								<Image src={book.cover} alt={`${book.title} by ${book.author}`} width={90} densities={[1, 2]} />
+							</a>
+						</li>
+					))}
+				</ul>
+			)
+		}
 		<div class="body">
 			<Content />
 		</div>
