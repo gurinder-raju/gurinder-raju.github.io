@@ -51,4 +51,4 @@ The two aren't mutually exclusive, but they start from different places: Thiel i
 
 **[The Goal](https://www.amazon.com/dp/0884271951), Eliyahu M. Goldratt:** A business novel that introduces the theory of constraints: a system's output is limited by its bottleneck, so improving anything else is wasted effort. For product teams, find the real constraint in how work flows before optimizing everything.
 
-**[High Output Management](https://www.amazon.com/dp/0679762884), Andy Grove:** A manager's output is the output of their organization, so the job is choosing the highest-leverage activities. Grove uses everyday examples like running a breakfast kitchen to explain production trade-offs and how to structure an organization.
+**[High Output Management](https://www.amazon.com/dp/0679762884), Andy Grove:** A manager's output is the output of their organization, so the job is choosing the highest-leverage activities. Grove uses everyday examples like running a breakfast kitchen to explain production trade-offs and how to structure an organization. *(I read this after the talk and added it to the list in September 2026.)*
