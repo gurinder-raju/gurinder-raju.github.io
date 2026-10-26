@@ -39,7 +39,7 @@ const ogImage = talk.data.image && (await getImage({ src: talk.data.image, width
 		}
 		{
 			talk.data.books && (
-				<ul class="books" aria-label="The books">
+				<ul class="books" aria-label="The books" style={`--books: ${talk.data.books.length}`}>
 					{talk.data.books.map((book) => (
 						<li>
 							<a href={book.url} title={`${book.title}, ${book.author}`}>

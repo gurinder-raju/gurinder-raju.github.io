@@ -223,7 +223,8 @@ ul.books {
 	padding: 0;
 	margin: 1.75rem 0 0;
 	display: grid;
-	grid-template-columns: repeat(6, minmax(0, 1fr));
+	/* One row of covers on wide screens; --books is set to the number of books on the page. */
+	grid-template-columns: repeat(var(--books, 6), minmax(0, 1fr));
 	gap: 0.6rem;
 }
 
@@ -244,7 +245,7 @@ ul.books a:hover img {
 
 @media (max-width: 30rem) {
 	ul.books {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 }
 
