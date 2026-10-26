@@ -6,13 +6,11 @@ description: "Twelve practical tips for keeping human intelligence at the centre
 youtube: https://www.youtube.com/watch?v=jVOKbwWnHM0
 deck: /talks/2025/human-ai-intelligence/slides/
 ---
-*In November 2025, I gave this talk to the Seattle chapter of TPM Events, a community for technical program managers (TPMs) that takes part in global events like TPM Basecamp. You can watch the recording and click through the slides at the end of this page.*
+*In November 2025, I gave this talk to the Seattle chapter of TPM Events, a community for technical program managers (TPMs) that takes part in global events like TPM Basecamp. The recording and slides are at the end of this page.*
 
-Human intelligence, to me, is your ability to work with others, and your efficacy in being able to work with others. Why in the age of AI? You're going to hear enough soapbox about how to use AI to expedite your own work. My perspective is that you cannot afford to leave human intelligence behind while chasing artificial intelligence. But it's not an either-or. You can use AI to make you better at human intelligence.
+Human intelligence, to me, is your ability to work with others. You can't afford to leave it behind while chasing artificial intelligence, but it's not an either-or: you can use AI to get better at it.
 
-It matters most for TPMs, because the TPM role is about aligning priorities. The mission of an organization is clear, but higher-level goals get distilled down into smaller goals assigned to individual teams, and their success gets measured locally. Everyone protects the goals they're familiar with, so you should expect your dependencies to play defense. It's a very human factor. Making one human being agree with another is the hardest job there is, and it's where great TPMs distinguish themselves from good ones.
-
-I shared twelve practical tips in three groups.
+It matters most for TPMs, whose job is aligning priorities. Goals get distilled into smaller team goals that are measured locally, so every team protects its own. Aligning humans is where great TPMs distinguish themselves from good ones.
 
 ## Four things you can do right now
 
@@ -39,14 +37,14 @@ Supercharge your AI usage, but don't leave human intelligence behind. It's not a
 
 ## Q&A
 
-**When I ask AI for options, trade-offs, and a recommendation on a risk, it isn't creative enough to think outside the box the way a person can. Where has it helped you?**
+**AI's answers on risk feel too prescriptive. Where has it helped you?**
 
-Leave space. If you dial the temperature down, AI's responses will be very prescriptive, and if you hand it the trade-offs and options, it's not really helping you do risk management. It's helping you choose from options already limited by your blind spots. I think of it more as change processing: understanding the cascading impact of a change. Even ask it, "What am I not thinking about?" That's where you'll find what opens your blind spots.
+Leave space. If you hand it your options, it just picks from choices already limited by your blind spots. I use it for change processing instead, and ask, "What am I not thinking about?"
 
-**What framework do successful TPMs use to deal with ambiguity, especially with AI?**
+**How do great TPMs deal with ambiguity?**
 
-In my organization, we build products on top of AWS building blocks like storage and compute, and ambiguity grows with dependencies. Good TPMs know each dependency's pattern of behavior: what promises it keeps, where it moves fast, and who else is asking it for the same thing. That gives a much deeper picture of what will definitely land and what's at risk. It's a muscle you build over time, and AI won't get you there right away, but once you have that understanding, you can automate a lot of it. And some of it is individual: you have to be extremely comfortable with ambiguity, and extremely uncomfortable letting it linger.
+My org builds up-the-stack products on top of AWS building blocks like storage and compute, so most of our ambiguity comes from dependencies. Great TPMs know each dependency's pattern of behavior: which promises it keeps, and who else is asking it for the same thing. That gives a truer picture of what will land and what's at risk, and it's the unique value they create for me. It takes time to build, but AI can automate a lot of it once you have it. And great TPMs are comfortable with ambiguity but uncomfortable letting it linger.
 
-**With so many AI tools, my first instinct is to have AI write the email. How do I put my own thinking first?**
+**How do I put my own thinking first, instead of reaching for AI?**
 
-I don't think of it that way. Think of ground rules and templates, like you'd set with kids. Before I write a document, I can see it in my mind, almost like pseudocode: the sections and how I want to write them. Once the structure and ground rules are clear, you're ready to engage AI, whether it writes a section or works from your framework. Don't wait on having a first version.
+Set the ground rules and the structure first. I can see a document in my mind before I write it. Once that's clear, engage AI. Don't wait on having a first version.
