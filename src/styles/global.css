@@ -4,7 +4,7 @@
 	--muted: #6b6a66;
 	--rule: #e4e2dc;
 	--link: #1f4e8c;
-	--measure: 40rem;
+	--measure: 46rem;
 	color-scheme: light;
 }
 
@@ -33,7 +33,7 @@ body {
 	margin: 0;
 	background: var(--bg);
 	color: var(--fg);
-	font: 1.0625rem/1.65 ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+	font: 1.125rem/1.65 ui-serif, Georgia, Cambria, 'Times New Roman', serif;
 }
 
 .wrap {
