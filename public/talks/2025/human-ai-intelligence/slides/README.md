@@ -13,7 +13,7 @@ You've had plenty of advice on using AI to move faster. This talk is about the o
 
 | | |
 |---|---|
-| **Browser** | [Open the deck](https://YOUR-DOMAIN/talks/2025/human-ai-intelligence/). Arrow keys or swipe to move, `?` for keys, `t` for light/dark, `p` to save as PDF. |
+| **Browser** | [Open the deck](https://gurinder-raju.github.io/talks/2025/human-ai-intelligence/slides/). Arrow keys or swipe to move, `?` for keys, `t` for light/dark, `p` to save as PDF. |
 | **Terminal** | `brew install presenterm` (or `cargo install --locked presenterm`), then `presenterm slides.md`. Best at 100×30 or larger, i.e. full screen. |
 | **Plain text** | [`slides.md`](slides.md) reads fine right here on GitHub. |
 

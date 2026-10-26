@@ -1,4 +1,5 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import { formatDate, getTalks, talkHref } from '../utils';
 
 interface Props {
@@ -9,6 +10,11 @@ interface Props {
 const { compact = false } = Astro.props;
 const talks = await getTalks();
 const month = (date: Date) => formatDate(date, { year: 'numeric', month: compact ? 'short' : 'long' });
+// What a talk's page offers, e.g. "Summary, video and slides".
+const contents = (talk: CollectionEntry<'talks'>) => {
+	const parts = ['Summary', talk.data.youtube && 'video', talk.data.deck && 'slides'].filter(Boolean);
+	return parts.length > 1 ? `${parts.slice(0, -1).join(', ')} and ${parts.at(-1)}` : parts[0];
+};
 ---
 
 {
@@ -31,7 +37,7 @@ const month = (date: Date) => formatDate(date, { year: 'numeric', month: compact
 					<a class="title" href={talkHref(talk)}>{talk.data.title}</a>
 					<div class="meta">
 						{talk.data.event} · <time datetime={talk.data.date.toISOString()}>{month(talk.data.date)}</time> ·{' '}
-						{talk.data.deck ? 'Slides' : talk.data.youtube ? 'Summary and video' : 'Summary'}
+						{contents(talk)}
 					</div>
 					<p>{talk.data.description}</p>
 				</li>

@@ -11,7 +11,7 @@ export async function getTalks() {
 }
 
 export function talkHref(talk: CollectionEntry<'talks'>) {
-	return talk.data.deck ?? `/talks/${talk.id}/`;
+	return `/talks/${talk.id}/`;
 }
 
 export function youtubeId(url: string) {

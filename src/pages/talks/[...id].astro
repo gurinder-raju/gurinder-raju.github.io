@@ -4,10 +4,9 @@ import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { formatDate, getTalks, youtubeId } from '../../utils';
 
-// Deck talks are served as-is from public/talks/, so only summary talks get a page here.
 export async function getStaticPaths() {
 	const talks = await getTalks();
-	return talks.filter((talk) => !talk.data.deck).map((talk) => ({ params: { id: talk.id }, props: { talk } }));
+	return talks.map((talk) => ({ params: { id: talk.id }, props: { talk } }));
 }
 
 const { talk } = Astro.props;
@@ -66,6 +65,16 @@ const ogImage = talk.data.image && (await getImage({ src: talk.data.image, width
 					/>
 					<figcaption class="meta">
 						<a href={talk.data.youtube}>Watch on YouTube</a>
+					</figcaption>
+				</figure>
+			)
+		}
+		{
+			talk.data.deck && (
+				<figure class="slides">
+					<iframe src={talk.data.deck} title={`Slides: ${talk.data.title}`} loading="lazy" />
+					<figcaption class="meta">
+						Click or swipe through the slides, or <a href={talk.data.deck}>open them full screen</a>
 					</figcaption>
 				</figure>
 			)

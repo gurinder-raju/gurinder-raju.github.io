@@ -22,8 +22,8 @@ const posts = defineCollection({
 		}),
 });
 
-// A talk is either a summary page rendered from its body (with an optional YouTube video),
-// or just a listing that points at a self-contained deck in public/talks/.
+// A talk is a summary page rendered from its body, with an optional YouTube video and an
+// optional link (deck) to a self-contained slide deck in public/talks/.
 const talks = defineCollection({
 	loader: folderEntries('./src/content/talks'),
 	schema: ({ image }) =>

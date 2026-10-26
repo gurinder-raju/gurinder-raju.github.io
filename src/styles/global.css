@@ -201,11 +201,13 @@ article .body {
 	margin-top: 1.75rem;
 }
 
-figure.video {
+figure.video,
+figure.slides {
 	margin: 2.5rem 0 0;
 }
 
-figure.video iframe {
+figure.video iframe,
+figure.slides iframe {
 	display: block;
 	width: 100%;
 	aspect-ratio: 16 / 9;
@@ -214,7 +216,14 @@ figure.video iframe {
 	background: var(--rule);
 }
 
-figure.video figcaption {
+/* The deck is its own small page; framing it gives a click-through preview of the slides. */
+figure.slides iframe {
+	aspect-ratio: 4 / 3;
+	border: 1px solid var(--rule);
+}
+
+figure.video figcaption,
+figure.slides figcaption {
 	margin-top: 0.5rem;
 }
 
