@@ -247,3 +247,53 @@ ul.books a:hover img {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 }
+
+/* Footnote markers read as [1], [2], matching the earlier reference style. */
+sup {
+	line-height: 0;
+}
+
+a[data-footnote-ref] {
+	text-decoration: none;
+}
+
+a[data-footnote-ref]::before {
+	content: '[';
+}
+
+a[data-footnote-ref]::after {
+	content: ']';
+}
+
+/* Notes at the end of a post: smaller and quieter than the body, under a rule. */
+section.footnotes {
+	margin-top: 2.5rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid var(--rule);
+	color: var(--muted);
+	font-size: 0.9rem;
+	line-height: 1.55;
+}
+
+section.footnotes h2 {
+	margin: 0 0 0.75rem;
+	font-size: 0.95rem;
+	color: var(--fg);
+}
+
+section.footnotes ol {
+	margin: 0;
+	padding-left: 1.4rem;
+}
+
+section.footnotes li {
+	margin-bottom: 0.55rem;
+}
+
+section.footnotes p {
+	margin: 0;
+}
+
+a[data-footnote-backref] {
+	text-decoration: none;
+}

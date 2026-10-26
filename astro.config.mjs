@@ -8,6 +8,7 @@ export default defineConfig({
 	trailingSlash: 'always',
 	markdown: {
 		// Keep post text exactly as written (no automatic curly quotes or dashes).
-		processor: satteri({ features: { smartPunctuation: false } }),
+		// Footnotes ([^id]) render as a numbered "Notes" section at the end of a post.
+		processor: satteri({ features: { smartPunctuation: false, gfm: { footnotes: { label: 'Notes' } } } }),
 	},
 });
