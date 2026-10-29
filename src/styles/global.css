@@ -4,7 +4,7 @@
 	--muted: #6b6a66;
 	--rule: #e4e2dc;
 	--link: #1f4e8c;
-	--measure: 46rem;
+	--measure: 48rem;
 	color-scheme: light;
 }
 
@@ -33,7 +33,7 @@ body {
 	margin: 0;
 	background: var(--bg);
 	color: var(--fg);
-	font: 1.125rem/1.65 ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+	font: 1.0625rem/1.6 ui-serif, Georgia, Cambria, 'Times New Roman', serif;
 }
 
 .wrap {
@@ -90,7 +90,7 @@ h3 {
 }
 
 h1 {
-	font-size: 1.9rem;
+	font-size: 1.75rem;
 	margin: 0 0 0.5rem;
 }
 
@@ -172,13 +172,6 @@ ul.list.compact p {
 	ul.list.compact .meta {
 		display: block;
 	}
-}
-
-.more {
-	display: inline-block;
-	margin-top: 0.75rem;
-	font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-	font-size: 0.9rem;
 }
 
 article img.hero {
