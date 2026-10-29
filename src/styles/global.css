@@ -174,11 +174,14 @@ ul.list.compact p {
 	}
 }
 
+/* Capped by height, so square and 3:2 images take the same space; centered when narrower than the column. */
 article img.hero {
 	display: block;
-	width: 100%;
+	width: auto;
+	max-width: 100%;
 	height: auto;
-	margin: 1.75rem 0 2rem;
+	max-height: 19rem;
+	margin: 1.75rem auto 2rem;
 	border-radius: 4px;
 }
 
