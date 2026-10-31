@@ -103,7 +103,7 @@ h1 {
 
 h2 {
 	font-size: 1.05rem;
-	margin: 1.75rem 0 0.375rem;
+	margin: 1.25rem 0 0.375rem;
 	font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 	letter-spacing: 0.01em;
 }
@@ -189,9 +189,67 @@ article img.hero {
 	width: auto;
 	max-width: 100%;
 	height: auto;
-	max-height: 19rem;
+	max-height: 24rem;
 	margin: 1.75rem auto 2rem;
 	border-radius: 4px;
+}
+
+/* Linked images in a post's text show one at a time, and each opens at full size. Swipe, or use the arrows a script adds under them. */
+article p:has(> a > img) {
+	display: flex;
+	align-items: center;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	margin: 1.25rem 0 0.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	article p:has(> a > img) {
+		scroll-behavior: smooth;
+	}
+}
+
+article p > a:has(> img) {
+	flex: 0 0 100%;
+	scroll-snap-align: center;
+}
+
+article p > a > img {
+	display: block;
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	max-height: 30rem;
+	margin: 0 auto;
+	border-radius: 4px;
+	outline: 1px solid var(--rule);
+	outline-offset: -1px;
+}
+
+.carousel-bar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.75rem;
+	margin: 0 0 0.5rem;
+	font-size: 0.85rem;
+	color: var(--muted);
+}
+
+.carousel-bar button {
+	padding: 0.125rem 0.75rem;
+	border: 1px solid var(--rule);
+	border-radius: 4px;
+	background: none;
+	color: var(--fg);
+	font: inherit;
+	cursor: pointer;
+}
+
+.carousel-bar button:disabled {
+	color: var(--rule);
+	cursor: default;
 }
 
 main {
@@ -282,7 +340,7 @@ a[data-footnote-ref]::after {
 
 /* Notes at the end of a post: smaller and quieter than the body, under a rule. */
 section.footnotes {
-	margin-top: 1.75rem;
+	margin-top: 1.25rem;
 	padding-top: 0.875rem;
 	border-top: 1px solid var(--rule);
 	color: var(--muted);

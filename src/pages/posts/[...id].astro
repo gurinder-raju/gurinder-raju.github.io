@@ -25,9 +25,57 @@ const ogImage = await getImage({ src: post.data.image, width: 1200, format: 'jpe
 			src={post.data.image}
 			alt={post.data.imageAlt}
 			widths={[400, 800, 1200]}
-			sizes="(max-width: 30.5rem) 100vw, 28.5rem"
+			sizes="(max-width: 38rem) 100vw, 36rem"
 			loading="eager"
 		/>
 		<Content />
 	</article>
 </Base>
+
+<script>
+	// A paragraph of linked images shows one at a time, so it gets arrows and a label under it.
+	// Each link's title names its image.
+	for (const row of document.querySelectorAll<HTMLElement>('article p:has(> a > img)')) {
+		const slides = [...row.children] as HTMLAnchorElement[];
+		if (slides.length < 2) continue;
+
+		// All of them load up front, so an arrow never lands on a blank image.
+		for (const image of row.querySelectorAll('img')) image.loading = 'eager';
+
+		let at = 0;
+		const label = document.createElement('span');
+		const show = () => {
+			label.textContent = `${slides[at].title} · ${at + 1} of ${slides.length}`;
+			back.disabled = at === 0;
+			next.disabled = at === slides.length - 1;
+		};
+		const arrow = (text: string, name: string, step: number) => {
+			const button = document.createElement('button');
+			button.textContent = text;
+			button.setAttribute('aria-label', name);
+			button.onclick = () => {
+				at += step;
+				row.scrollTo({ left: at * row.clientWidth });
+				show();
+			};
+			return button;
+		};
+		const back = arrow('‹', 'Previous image', -1);
+		const next = arrow('›', 'Next image', 1);
+
+		// A swipe moves the row itself, so the label follows once the row settles on an image.
+		row.addEventListener('scroll', () => {
+			const place = row.scrollLeft / row.clientWidth;
+			if (Math.abs(place - Math.round(place)) < 0.01) {
+				at = Math.round(place);
+				show();
+			}
+		});
+		show();
+
+		const bar = document.createElement('div');
+		bar.className = 'carousel-bar';
+		bar.append(back, label, next);
+		row.after(bar);
+	}
+</script>
