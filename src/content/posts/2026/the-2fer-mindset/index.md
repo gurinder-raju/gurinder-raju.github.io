@@ -1,6 +1,6 @@
 ---
 title: "The 2fer Mindset"
-date: 2026-11-03
+date: 2026-11-02
 description: "A 2fer is one piece of work that benefits two things. It's how I prioritized an organization in flux, and it's now how I practice speaking."
 image: ./2fer-launch.png
 imageAlt: "The word Shipped, then 2fer in large terminal block letters, then the line: A plugin that helps hold your spoken words in Claude Code to a human standard."
