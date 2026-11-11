@@ -370,3 +370,217 @@ section.footnotes p {
 a[data-footnote-backref] {
 	text-decoration: none;
 }
+
+/* An activity board drawn in the post itself. When it leads a post, it takes the hero's place. */
+article:has(> figure.board:first-of-type) img.hero {
+	display: none;
+}
+
+figure.board {
+	--cell: #ebe6dc;
+	--l1: #f6dcae;
+	--l2: #efbf6c;
+	--l3: #e3a03c;
+	--l4: #c47f17;
+	max-width: 36rem;
+	margin: 1.75rem auto 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	figure.board {
+		--cell: #2a2723;
+		--l1: #4d3c22;
+		--l2: #7d5c29;
+		--l3: #b57f30;
+		--l4: #e9a23b;
+	}
+}
+
+figure.board svg {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+figure.board text {
+	fill: var(--muted);
+	font: 24px ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+figure.board .c { fill: var(--cell); }
+figure.board .l1 { fill: var(--l1); }
+figure.board .l2 { fill: var(--l2); }
+figure.board .l3 { fill: var(--l3); }
+figure.board .l4 { fill: var(--l4); }
+
+figure.board .on {
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
+figure.board figcaption {
+	margin-top: 0.9rem;
+	/* Small enough on a phone that the command stays on one line. */
+	font: clamp(0.55rem, 2.5vw, 0.8rem)/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
+	white-space: nowrap;
+	color: var(--muted);
+}
+
+figure.board figcaption span {
+	color: var(--l4);
+}
+
+figure.board figcaption i {
+	display: inline-block;
+	width: 0.6em;
+	height: 1.05em;
+	margin-left: 0.3em;
+	vertical-align: -0.17em;
+	background: var(--l4);
+}
+
+/* Armed by the script, the tiles wait above their places and drop in one week at a time. */
+figure.board.armed .on {
+	opacity: 0;
+}
+
+figure.board.armed.play .on {
+	animation: tile-in 0.45s cubic-bezier(0.2, 0.7, 0.3, 1) var(--d) both;
+}
+
+@keyframes tile-in {
+	from { opacity: 0; transform: translateY(-60%) scale(0.6); }
+	to { opacity: 1; transform: none; }
+}
+
+/* A dial drawn in the post itself, so it follows the site's colors. */
+figure.dial {
+	--amber: #c9821c;
+	--band: #f3d8a4;
+	max-width: 34rem;
+	margin: 2rem auto;
+}
+
+@media (prefers-color-scheme: dark) {
+	figure.dial {
+		--amber: #e9a23b;
+		--band: #5c4521;
+	}
+}
+
+figure.dial svg {
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: visible;
+	font: 26px ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+	fill: var(--muted);
+	stroke-linecap: round;
+}
+
+figure.dial .track,
+figure.dial .band {
+	fill: none;
+	stroke-width: 22;
+	stroke-linecap: butt;
+}
+
+figure.dial .track {
+	stroke: var(--rule);
+}
+
+figure.dial .band {
+	stroke: var(--band);
+}
+
+figure.dial .tick {
+	stroke: var(--muted);
+	stroke-width: 1.6;
+	opacity: 0.6;
+}
+
+figure.dial .major {
+	stroke: var(--fg);
+	stroke-width: 3;
+}
+
+figure.dial .mark {
+	fill: var(--amber);
+	font-weight: 600;
+}
+
+figure.dial .needle line {
+	stroke: var(--fg);
+	stroke-width: 6;
+}
+
+figure.dial .needle .hub {
+	fill: #e9a23b;
+	stroke: var(--fg);
+	stroke-width: 4;
+}
+
+figure.dial .needle {
+	transform-box: view-box;
+	transform-origin: 400px 372px;
+}
+
+/* The script arms a dial before it scrolls in, so the needle waits off to one side. */
+figure.dial.armed .needle {
+	transform: rotate(-36deg);
+}
+
+figure.dial.armed.play .needle {
+	animation: dial-settle 1.5s cubic-bezier(0.3, 0, 0.3, 1) forwards;
+}
+
+@keyframes dial-settle {
+	0% { transform: rotate(-36deg); }
+	30% { transform: rotate(22deg); }
+	55% { transform: rotate(-10deg); }
+	78% { transform: rotate(4deg); }
+	100% { transform: rotate(0deg); }
+}
+
+figure.dial figcaption {
+	margin-top: 0.75rem;
+	text-align: center;
+	font-size: 1.5rem;
+	letter-spacing: -0.01em;
+}
+
+figure.dial figcaption span {
+	color: var(--amber);
+}
+
+/* A smaller dial can sit to the right of a paragraph, with the text wrapping around it.
+   It follows a section's heading, and the negative top margin (the heading's line plus
+   its gap) lifts it so its top lines up with the heading's top. */
+figure.dial.right {
+	float: right;
+	width: 15rem;
+	margin: -1.6875rem 0 1rem 1.75rem;
+}
+
+figure.dial.right svg {
+	font-size: 40px;
+}
+
+figure.dial.right figcaption {
+	margin-top: 0.4rem;
+	font-size: 1.05rem;
+}
+
+/* On a phone there's no room beside it, so it sits centered above the text. */
+@media (max-width: 40rem) {
+	figure.dial.right {
+		float: none;
+		margin: 1.5rem auto;
+	}
+}
+
+/* Nothing that floats runs past the end of its section. */
+article h2,
+section.footnotes {
+	clear: both;
+}

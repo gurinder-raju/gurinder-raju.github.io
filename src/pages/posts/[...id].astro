@@ -78,4 +78,24 @@ const ogImage = await getImage({ src: post.data.image, width: 1200, format: 'jpe
 		bar.append(back, label, next);
 		row.after(bar);
 	}
+
+	// A dial's needle swings both ways and settles, and a board's tiles move into place,
+	// the first time each comes into view. Without this script, or with reduced motion,
+	// they just show where they end up.
+	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		const seen = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (!entry.isIntersecting) continue;
+					entry.target.classList.add('play');
+					seen.unobserve(entry.target);
+				}
+			},
+			{ threshold: 0.6 },
+		);
+		for (const figure of document.querySelectorAll('figure.dial, figure.board')) {
+			figure.classList.add('armed');
+			seen.observe(figure);
+		}
+	}
 </script>
