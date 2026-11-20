@@ -17,6 +17,8 @@ That's why new approaches like WebMCP and NLWeb matter. WebMCP lets sites expose
 
 **2/ Native Applications Are The Enterprise Surface:** Enterprise workflows span browsers, productivity suites, ERP systems, proprietary software, internal tools, and decades of applications that may never expose clean APIs. Structured tools and APIs still win where they exist; computer use covers the long tail where they don't.
 
+Accessibility trees offer a structured view of applications on both Windows and macOS[^accessibility]. They expose controls, labels, and state, reducing what agents have to infer from screenshots. Where applications expose that information well, this can make computer use cheaper and more reliable.
+
 But operating these applications is only part of the job, and that's the gap ALE measures. The challenge is no longer whether a model can find a button. Real enterprise work means reasoning across applications, holding constraints and state over long workflows, producing artifacts, and verifying the work was actually done. Teams compensate today with skills and recipes that encode the procedure for the agent. That works for well-defined workflows, but ambiguous tasks need the base model itself to get better.
 
 Across both surfaces, there's still enormous headroom in efficiency and reliability. Watch progress on benchmarks like ALE closely. To me, it's the best proxy for when agents are truly ready for real work.
@@ -28,3 +30,5 @@ Across both surfaces, there's still enormous headroom in efficiency and reliabil
 [^webmcp]: W3C community group: [WebMCP explainer](https://github.com/webmachinelearning/webmcp) (August 2025). Drafted by engineers at Google and Microsoft, and now being tested in Chrome.
 
 [^nlweb]: Microsoft: [Introducing NLWeb](https://news.microsoft.com/source/features/company-news/introducing-nlweb-bringing-conversational-interfaces-directly-to-the-web/) (May 2025). Created by R.V. Guha, who also created RSS and Schema.org; every NLWeb site is also an MCP server.
+
+[^accessibility]: [WindowsWorld April 2026](https://arxiv.org/abs/2604.27776), [MacArena June 2026](https://arxiv.org/abs/2606.06560).
