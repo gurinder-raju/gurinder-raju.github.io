@@ -69,14 +69,16 @@ header.site .name {
 	text-decoration: none;
 }
 
+/* Links with a dot between each, like the meta lines, underlined so they read as links. */
 header.site nav {
 	display: flex;
-	gap: 1.25rem;
+	gap: 0.5rem;
+	color: var(--muted);
 }
 
 header.site nav a {
 	color: var(--muted);
-	text-decoration: none;
+	text-underline-offset: 0.2em;
 }
 
 header.site nav a:hover,

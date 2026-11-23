@@ -14,11 +14,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const path = Astro.url.pathname;
 const isHome = path === '/';
 const nav = [
+	// The GitHub profile, whose README lists each repo with a line on what it is.
+	{ href: 'https://github.com/gurinder-raju', label: 'Code' },
 	{ href: '/posts/', label: 'Posts' },
 	{ href: '/talks/', label: 'Talks' },
+	{ href: 'https://www.linkedin.com/in/gurinder-raju/', label: 'LinkedIn' },
+	{ href: 'https://x.com/gurinder_raju', label: 'X' },
 ];
-const linkedIn = 'https://www.linkedin.com/in/gurinder-raju/';
-const x = 'https://x.com/gurinder_raju';
 ---
 
 <!doctype html>
@@ -44,14 +46,15 @@ const x = 'https://x.com/gurinder_raju';
 			{isHome ? <h1 class="name">{siteName}</h1> : <a class="name" href="/">{siteName}</a>}
 			<nav>
 				{
-					nav.map((item) => (
-						<a href={item.href} aria-current={path.startsWith(item.href) ? 'page' : undefined}>
-							{item.label}
-						</a>
+					nav.map((item, i) => (
+						<>
+							{i > 0 && <span aria-hidden="true">·</span>}
+							<a href={item.href} aria-current={path.startsWith(item.href) ? 'page' : undefined}>
+								{item.label}
+							</a>
+						</>
 					))
 				}
-				<a href={linkedIn}>LinkedIn</a>
-				<a href={x}>X</a>
 			</nav>
 		</header>
 		<main class="wrap">
